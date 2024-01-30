@@ -22,7 +22,7 @@
 
 ## Example
 
-[SwapV3](test/swapV3/swapV3.spec.ts)
+[SwapV3](test/swapv3/swapv3.spec.ts)
 
 [Liquidity](test/pool/poolv3.spec.ts)
 
