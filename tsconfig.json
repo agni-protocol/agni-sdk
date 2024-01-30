@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "declaration": true,
+    "strict": false,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "experimentalDecorators":true,
+    "emitDecoratorMetadata":true,
+    "skipLibCheck": true,
+    "downlevelIteration": false,
+    "sourceMap": false,
+    "resolveJsonModule": true,
+    "noUncheckedIndexedAccess": true,
+    "strictNullChecks": false,
+    "module": "es2020",
+    "types": [
+      "node",
+      "ethers",
+    ],
+    "baseUrl": "./",
+  },
+  "include": [
+    "src",
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

@@ -1,0 +1,1 @@
+[{ "inputs": [{ "internalType": "address", "name": "token", "type": "address" }, { "internalType": "uint256", "name": "tokenIdOrAmount", "type": "uint256" }], "name": "calculate", "outputs": [{ "internalType": "uint256", "name": "score", "type": "uint256" }], "stateMutability": "view", "type": "function" }]
