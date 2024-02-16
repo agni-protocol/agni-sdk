@@ -1,6 +1,6 @@
 {
   "name": "agni-sdk",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "packageManager": "yarn@1.22.21",
   "author": "LiHang",
   "license": "MIT",
@@ -24,7 +24,7 @@
     "build:umd": "webpack",
     "clean": "rimraf dist dist.esm dist.umd",
     "lint": "eslint . --fix",
-    "release": "bumpp && npm publish",
+    "release": "npm publish",
     "start": "esno src/index.ts",
     "typecheck": "tsc --noEmit"
   },
