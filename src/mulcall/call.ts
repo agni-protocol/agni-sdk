@@ -4,7 +4,7 @@ import { Trace } from '../service'
 import type { ContractCall } from './types'
 import { Abi } from './abi'
 
-export const MAX_GAS_LIMIT = 30000000
+export const MAX_GAS_LIMIT = 250000000000
 export const QUOTER_TRADE_GAS = 3000000
 export const CHUNK_SIZE = 200
 
