@@ -22,7 +22,7 @@ export const SwapQueryV3Pools = gql`
             feeTier
             liquidity
             feeProtocol
-            totalValueLockedUSD
+            totalValueLockedUSD:totalValueLockedUSDUntracked
         }
     }
 `

@@ -137,6 +137,7 @@ export function initAddress(ENV: 'dev' | 'test' | 'prod' | 'prod_node'): void {
       '0x201EBa5CC46D216Ce6DC03F6a759e8E766e956aE',
       '0x09Bc4E0D864854c6aFB6eB9A9cdF58aC190D0dF9',
       '0xdEAddEaDdeadDEadDEADDEAddEADDEAddead1111',
+      '0xcda86a272531e8640cd7f1a92c01839911b90bb0',
     ]
     addressInfo.exchangeV2GraphApi = 'https://agni.finance/graph/subgraphs/name/agni/exchange-v2'
     addressInfo.exchangeV3GraphApi = 'https://agni.finance/graph/subgraphs/name/agni/exchange-v3'

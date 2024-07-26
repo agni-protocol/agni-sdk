@@ -136,7 +136,7 @@ describe('swap demo', () => {
   it('Swap', async () => {
 
 
-    initAddress('dev')
+    initAddress('prod_node')
 
     const currentAddressInfo = getCurrentAddressInfo()
     const swapApi = currentAddressInfo.getApi().swapV3Api();
@@ -151,12 +151,12 @@ describe('swap demo', () => {
 
     // Pair
     const token0Address: string = "MNT" // Token0 Address
-    const token1Address: string = "0xd0c049ee0b0832e5678d837c1519e1b2380e32e4"
+    const token1Address: string = "0xc96de26018a54d51c097160568752c4e3bd6c364"
 
     // Config
     const swapConfig = {
       gasPriceWei: '100000000000',
-      allowedSlippage: '0.0001', // Slippage
+      allowedSlippage: '0.01', // Slippage
       allowMultiHops: true,
       allowSplitRouting: true,
       allowedPoolTypes: [PoolType.V3],
@@ -186,7 +186,7 @@ describe('swap demo', () => {
 
 
     // input amount
-    const inputAmount = '1'
+    const inputAmount = '65000'
     // input token
     const inputToken = token0
 

@@ -25,12 +25,11 @@ export async function createGasModel({
 }: GasModelConfig): Promise<GasModel> {
   const currentAddressInfo = getCurrentAddressInfo()
   const nativeWrappedToken = currentAddressInfo.getApi().tokenMangerApi().WNATIVE()
-  const USDTToken = currentAddressInfo.getApi().tokenMangerApi().USDT()
 
   const { chainId } = quoteCurrency
   const gasPrice = BigInt(gasPriceWei)
 
-  const tokenPrice = await currentAddressInfo.api.tokenMangerApi().tokenPrice(quoteCurrency, nativeWrappedToken)
+  // const tokenPrice = await currentAddressInfo.api.tokenMangerApi().tokenPrice(quoteCurrency, nativeWrappedToken)
 
   const estimateGasCost = (
     pools: Pool[],
@@ -78,16 +77,16 @@ export async function createGasModel({
     const isQuoteNative = nativeWrappedToken.equals(quoteCurrency.wrapped)
 
     let gasCostInToken: CurrencyAmount<Currency> = CurrencyAmount.fromRawAmount(quoteCurrency.wrapped, 0)
-    let gasCostInUSD: CurrencyAmount<Currency> = CurrencyAmount.fromRawAmount(USDTToken, 0)
+    const gasCostInUSD: CurrencyAmount<Currency> = CurrencyAmount.fromRawAmount(nativeWrappedToken.wrapped, 0)
 
-    const quoteCurrencyPrice = tokenPrice[0]
-    const nativeWrappedTokenPrice = tokenPrice[1]
+    // const quoteCurrencyPrice = tokenPrice[0]
+    // const nativeWrappedTokenPrice = tokenPrice[1]
 
     try {
       if (isQuoteNative)
         gasCostInToken = totalGasCostNativeCurrency
 
-      if (!isQuoteNative) {
+      /*if (!isQuoteNative) {
         const price = new Price(
           nativeWrappedToken,
           quoteCurrency,
@@ -105,7 +104,7 @@ export async function createGasModel({
           new BigNumber(quoteCurrencyPrice.priceUSD).multipliedBy(10 ** USDTToken.decimals).toFixed(0, BigNumber.ROUND_DOWN),
         )
         gasCostInUSD = nativeTokenUsdPrice.quote(totalGasCostNativeCurrency)
-      }
+      }*/
     }
     catch (e) {
       // console.warn('Cannot estimate gas cost', e)
