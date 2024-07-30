@@ -150,13 +150,13 @@ describe('swap demo', () => {
 
 
     // Pair
-    const token0Address: string = "MNT" // Token0 Address
-    const token1Address: string = "0xc96de26018a54d51c097160568752c4e3bd6c364"
+    const token0Address: string = "0xdeaddeaddeaddeaddeaddeaddeaddeaddead1111" // Token0 Address
+    const token1Address: string = "0x5be26527e817998a7206475496fde1e68957c5a6"
 
     // Config
     const swapConfig = {
       gasPriceWei: '100000000000',
-      allowedSlippage: '0.01', // Slippage
+      allowedSlippage: '0.1', // Slippage
       allowMultiHops: true,
       allowSplitRouting: true,
       allowedPoolTypes: [PoolType.V3],

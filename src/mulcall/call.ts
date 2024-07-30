@@ -4,7 +4,7 @@ import { Trace } from '../service'
 import type { ContractCall } from './types'
 import { Abi } from './abi'
 
-export const MAX_GAS_LIMIT = 250000000000
+export const MAX_GAS_LIMIT = 30000000
 export const QUOTER_TRADE_GAS = 3000000
 export const CHUNK_SIZE = 200
 
@@ -24,7 +24,7 @@ export async function multicallExecute<T extends any[] = any[]>(
   try {
     const response = []
     for (const callChuck of callRequestsChuck) {
-      const result = await multicall.tryAggregate.staticCall(false, callChuck, { gasLimit: MAX_GAS_LIMIT })
+      const result = await multicall.tryAggregate.staticCall(false, callChuck)
       response.push(...result)
     }
     const callCount = calls.length

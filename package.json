@@ -1,6 +1,6 @@
 {
   "name": "agni-sdk",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "packageManager": "yarn@1.22.21",
   "author": "LiHang",
   "license": "MIT",

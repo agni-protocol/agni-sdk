@@ -1,9 +1,9 @@
-import { CacheKey, Trace } from '../tool'
-import type { ConnectInfo } from '../../ConnectInfo'
+import {CacheKey, Trace} from '../tool'
+import type {ConnectInfo} from '../../ConnectInfo'
 
-import { MAX_GAS_LIMIT } from '../../mulcall'
-import { GasLimitMulticall } from '../../abi'
-import { BaseAbi } from './BaseAbi'
+import {MAX_GAS_LIMIT} from '../../mulcall'
+import {GasLimitMulticall} from '../../abi'
+import {BaseAbi} from './BaseAbi'
 
 export interface GasCallRequest {
   target: string
@@ -29,7 +29,7 @@ export class GasMultiCallContract extends BaseAbi {
       const gasLimit = Number.parseInt(Number(MAX_GAS_LIMIT * 0.9).toString())
       let gasLeft = gasLimit
       for (const callRequest of calls) {
-        const { target, callData, gasLimit: gasCostLimit } = callRequest
+        const {target, callData, gasLimit: gasCostLimit} = callRequest
         const singleGasLimit = gasCostLimit
         const currentChunk = chunks[chunks.length - 1]
         if (singleGasLimit > gasLeft) {
@@ -49,19 +49,19 @@ export class GasMultiCallContract extends BaseAbi {
       return chunks
     }
     const callRequestsChuck = splitCallsIntoChunks(callRequests)
-    try {
-      const response = []
-      for (const callChuck of callRequestsChuck) {
+
+    const response = []
+    for (const callChuck of callRequestsChuck) {
+      try {
         const {
           returnData,
-        } = await this.contract.multicall.staticCall(callChuck, { gasLimit: MAX_GAS_LIMIT })
+        } = await this.contract.multicall.staticCall(callChuck)
         response.push(...returnData)
+      } catch (e) {
+        Trace.error('multicall call error', e)
+        throw e
       }
-      return response
     }
-    catch (e) {
-      Trace.error('multicall call error', e)
-      throw e
-    }
+    return response
   }
 }
