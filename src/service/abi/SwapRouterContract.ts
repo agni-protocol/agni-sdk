@@ -6,11 +6,13 @@ import type {BaseRoute, Route, SmartRouterTrade} from '../tool/v3route/types'
 import {RouteType} from '../tool/v3route/types'
 import {maximumAmountIn, minimumAmountOut} from '../tool/v3route/utils/maximumAmount'
 import {getCurrentAddressInfo} from '../../Constant'
-import type {Pool, TransactionEvent, V3Pool} from '../vo'
+import type {Pool, V3Pool} from '../vo'
 import {encodeMixedRouteToPath} from '../tool/math/SwapV3Math'
 import {BaseAbi} from './BaseAbi'
 import {getOutputCurrency, involvesCurrency, isV2Pool, isV3Pool} from "../tool/v3route/utils/pool";
 import {buildBaseRoute} from "../tool/v3route/utils/route";
+import {ExtTransactionEvent} from "../vo/ExtTransactionEvent";
+import {TransactionEvent} from "../vo";
 
 const partitionMixedRouteByProtocol = (route: Route): Pool[][] => {
   const acc: Pool[][] = []
@@ -314,7 +316,7 @@ export class SwapRouterContract extends BaseAbi {
 
 
   @EnableLogs()
-  async swap(trades: SmartRouterTrade<TradeType>[], slippageTolerance: Percent, recipientAddr: string, deadline: string | number, gasPriceGWei: string): Promise<TransactionEvent> {
+  async swap(trades: SmartRouterTrade<TradeType>[], slippageTolerance: Percent, recipientAddr: string, deadline: string | number): Promise<TransactionEvent> {
     const numberOfTrades = trades.reduce((numOfTrades, trade) => numOfTrades + trade.routes.length, 0)
 
     const sampleTrade = trades[0]
@@ -397,7 +399,6 @@ export class SwapRouterContract extends BaseAbi {
       )
     }
     return await this.connectInfo.tx().sendContractTransaction(this.contract, 'multicall', [calldatas], {
-      gasPrice: gasPriceGWei,
       value: inputIsNative ? totalAmountIn.quotient.toString() : '0',
     })
   }

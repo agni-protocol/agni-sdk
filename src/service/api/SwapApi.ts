@@ -207,7 +207,7 @@ export class SwapApi {
         recipientAddr = connectInfo.account
 
       const slippageTolerance = new Percent(BigInt(new BigNumber(updateInputResult.swapConfig.allowedSlippage).multipliedBy(10000).toFixed(0, BigNumber.ROUND_DOWN)), 10000n)
-      const transactionEvent = await connectInfo.create(SwapRouterContract).swap([updateInputResult.trade], slippageTolerance, recipientAddr, deadline, updateInputResult.swapConfig.gasPriceWei)
+      const transactionEvent = await connectInfo.create(SwapRouterContract).swap([updateInputResult.trade], slippageTolerance, recipientAddr, deadline)
       transactionHistory.saveHistory(
         connectInfo,
         transactionEvent,

@@ -59,7 +59,8 @@ export class TransactionService extends BaseService {
       gasPrice?: string
       gasLimit?: number
       fromAddress?: string
-      value?: number | string
+      value?: number | string,
+      submitMethod?:string
     } = {},
   ): Promise<TransactionEvent> {
     const currentChain = getCurrentAddressInfo().chainId
@@ -67,7 +68,7 @@ export class TransactionService extends BaseService {
     if (chainId !== currentChain)
       throw new BasicException(`Check your wallet network chain id = ${currentChain}!`)
 
-    if (this.connectInfo.connectMethod === 'EXT') {
+    if (this.connectInfo.connectMethod === 'EXT' || config.submitMethod === 'EXT') {
       return await this.sendExtTransaction(contract, method, args, config)
     }
     return await this.sendRpcTransaction(contract, method, args, config)

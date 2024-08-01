@@ -143,22 +143,22 @@ describe('swap demo', () => {
 
 
     // User Address
-    const userAddress: string = "0x7D515d229FF5b4b8f3Bc24391B5E1c897363d8D9"
+
 
 
     const connectInfo = await connect()
-
+    const userAddress: string = connectInfo.account
 
     // Pair
-    const token0Address: string = "0xdeaddeaddeaddeaddeaddeaddeaddeaddead1111" // Token0 Address
-    const token1Address: string = "0x5be26527e817998a7206475496fde1e68957c5a6"
+    const token0Address: string = "0x09bc4e0d864854c6afb6eb9a9cdf58ac190d0df9" // Token0 Address
+    const token1Address: string = "MNT"
 
     // Config
     const swapConfig = {
       gasPriceWei: '100000000000',
-      allowedSlippage: '0.1', // Slippage
-      allowMultiHops: true,
-      allowSplitRouting: true,
+      allowedSlippage: '0.5', // Slippage
+      allowMultiHops: false,
+      allowSplitRouting: false,
       allowedPoolTypes: [PoolType.V3],
     } as SwapConfig
 
