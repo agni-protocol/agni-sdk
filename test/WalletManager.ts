@@ -1,15 +1,17 @@
-import {ethers, JsonRpcApiProvider, JsonRpcApiProviderOptions, JsonRpcProvider, Network, Signer, Wallet} from 'ethers'
+import {
+  Contract,
+  ethers,
+  JsonRpcApiProvider,
+  JsonRpcApiProviderOptions,
+  JsonRpcProvider,
+  Network,
+  Signer,
+  Wallet
+} from 'ethers'
 import {ConnectInfo, getCurrentAddressInfo, initAddress, Trace, TransactionEvent, WalletConnect} from '../src'
 import {ExtTransactionEvent} from "../src/service/vo/ExtTransactionEvent";
 
 initAddress('dev')
-
-class DebugRpcProvider extends JsonRpcProvider {
-  async send(method: string, params: Array<any> | Record<string, any>): Promise<any> {
-     const result = await super.send(method, params);
-     return result
-  }
-}
 
 
 export async function connect(): Promise<ConnectInfo> {
@@ -21,7 +23,7 @@ export async function connect(): Promise<ConnectInfo> {
     batchMaxCount: 1,
     batchMaxSize: 1
   }
-  const provider = new DebugRpcProvider(rpcUrl, currentAddressInfo.chainId, config)
+  const provider = new JsonRpcProvider(rpcUrl, currentAddressInfo.chainId, config)
   const wallet = new ethers.Wallet(privateKey, provider)
 
   class PrivateWallet extends WalletConnect {
@@ -53,7 +55,9 @@ export async function connect(): Promise<ConnectInfo> {
   }
 
 
-  return await (new PrivateWallet(wallet,provider).connect());
+  const connectInfo = await (new PrivateWallet(wallet,provider).connect());
+  return connectInfo
+
 
 
   // return await (await WalletConnect.connectMetaMask()).connect()
@@ -88,7 +92,9 @@ export async function handTx(transactionEvent:TransactionEvent){
     // signature
     // Broadcast on-chain ...
 
-    //  const connectInfo = await connect();
+     const connectInfo = await connect();
+
+
     //  const transactionResponse = await connectInfo.getWalletOrProvider().sendTransaction({
     //    data,
     //    gasPrice,

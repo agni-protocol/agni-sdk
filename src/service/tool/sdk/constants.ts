@@ -3,7 +3,7 @@ export type BigintIsh = bigint | number | string
 
 export enum ChainId {
   MANTLE = 5000,
-  MANTLE_TESTNET = 5001,
+  MANTLE_TESTNET = 5003,
 }
 
 export enum TradeType {

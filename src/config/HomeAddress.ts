@@ -2,41 +2,31 @@ import { updateCurrentAddressInfo } from '../Constant'
 import { ConnectManager } from '../WalletConnect'
 import { AddressInfo, StorageProvider, Trace } from '../service'
 
+
 export const TESTNET_ADDRESSES = {
-  AgniPoolDeployer: '0x0B7e80F0e664ae80bbE0c56f7908ef14f5898b1d',
-  AgniFactory: '0x503Ca2ad7C9C70F4157d14CF94D3ef5Fa96D7032',
-  InitCodeHashAddress: '0xECeFAd547Dd6E5556065dF7797D9fC892B5EA864',
-  InitCodeHash: '0xaf9bd540c3449b723624376f906d8d3a0e6441ff18b847f05f4f85789ab64d9a',
-  WMNT: '0xEa12Be2389c2254bAaD383c6eD1fa1e15202b52A',
-  SwapRouter: '0xe2DB835566F8677d6889ffFC4F3304e8Df5Fc1df',
-  QuoterV2: '0x49C8bb51C6bb791e8D6C31310cE0C14f68492991',
-  TickLens: '0x0DC832e8cA4a7E1CE073096709474A5422029DB3',
-  NFTDescriptor: '0x8002eb63E37728ddf15bd42Bf2607CBbBa714b3f',
-  NonfungibleTokenPositionDescriptor: '0xDc7E9B3E927f2880CEa359e659321F9d232aCb2c',
-  NonfungiblePositionManager: '0xb04a19EF7853c52EDe6FBb28F8FfBecb73329eD7',
-  AgniInterfaceMulticall: '0xF9Ae3Cc6D6483722b94d7075C9B366bcbbbab9d3',
-  MasterChef: '0x0BC31D78e06ef928658e0B6AB50460552f3D91c4',
-  MasterChefV3Receiver: '0x882a2c07Bf04DEcCA36Be060B07d8BC0EE50D2Ff',
-  AgniLmPoolDeployer: '0x8e8a453Bc0d968bBb284766aa4fE018a367E3106',
-  ScoreCalculator: {
-    Proxy: '0x9Cecf546DC36A2DaA5eC7375C3cF35FEd1ADD7a2',
-    Admin: '0x077e4C7F653FFe83cb560d994aDFF5685b3F0e6B',
-    Implementation: '0xF3FaF04d1FeF0bce0a3cCD7a817810B9071fDa36',
-  },
-  StakingPool: '0x31Fa04284049BD9C3Aff46503482270f0Be4BC5E',
-  IdoPoolTemplate: '0xae411e11D9fA2773CEaC200cC2C73F17324Fc93B',
-  IdoPoolFactory: '0xBfdb61b73Ad4647f3EcBeeeE5e875F081C486d53',
-  InsurancePool: '0xccc6A1C40BCFd5458CE3ebB731644fc62E3041e9',
-  Multicall3: '0x70f0c400171158c29B61a3E79C92c72e95679541',
+  "AgniPoolDeployer": "0x6C53C6cC7c10B389c5680458Fc0C4079f3F012b4",
+  "AgniFactory": "0xA9AcD50B042A72c33d05fDcC8ad209d3aD361762",
+  "InitCodeHashAddress": "0xa18655b73FDC38665CFB9e09A5a0a10C14e68EC5",
+  "InitCodeHash": "0xaf9bd540c3449b723624376f906d8d3a0e6441ff18b847f05f4f85789ab64d9a",
+  "WMNT": "0x67A1f4A939b477A6b7c5BF94D97E45dE87E608eF",
+  "SwapRouter": "0xe38cfa32cCd918d94E2e20230dFaD1A4Fd8aEF16",
+  "Quoter": "0xA82F8dC4704d3512b120de70480219761F24B6Eb",
+  "QuoterV2": "0x9Da17239a4170f50A5A2c11813BD0C601b5c9693",
+  "TickLens": "0xB4EB98c6d7D4807033Ae6195241ef7A839070748",
+  "NFTDescriptor": "0x7C20eE7CC3230003401cC19BF076871Aedf39856",
+  "NonfungibleTokenPositionDescriptor": "0x497bd1C86a1088e80f58EaA13de8C81aB70a4e79",
+  "NonfungiblePositionManager": "0x71959543c31EC4d68D9D6C492Bf69A1C174bb394",
+  "AgniInterfaceMulticall": "0x49b05721B9615dC1811E20F47D5700dA2d6Ed429",
+  "Multicall3": "0x521751C88EafdCAEd9cAbb4dB35a1400D6933428",
   tokens: [
-    '0xEa12Be2389c2254bAaD383c6eD1fa1e15202b52A',
-    '0x3e163F861826C3f7878bD8fa8117A179d80731Ab',
-    '0x82a2eb46a64e4908bbc403854bc8aa699bf058e9',
-    '0x74a0e7118480bdff5f812c7a879a41db09ac2c39',
-    '0xd0c049ee0b0832e5678d837c1519e1b2380e32e4',
-    '0x113667C49c053230D3232AC7d74F471Dcd42f11E',
+    '0x67A1f4A939b477A6b7c5BF94D97E45dE87E608eF',
+    '0xcc4ac915857532ada58d69493554c6d869932fe6',
+    '0xacab8129e2ce587fd203fd770ec9ecafa2c88080',
+    '0xf6762afb45ac0af7ddc5aa92b885c6ece57874dc',
+    '0x3edb12e9cf43a6f645eedee2800e01e142c5758d'
   ],
 }
+
 
 export const MAINNET_ADDRESSES = {
   AgniPoolDeployer: '0xe9827B4EBeB9AE41FC57efDdDd79EDddC2EA4d03',
@@ -64,11 +54,11 @@ export const MAINNET_ADDRESSES = {
 export function initAddress(ENV: 'dev' | 'test' | 'prod' | 'prod_node'): void {
   if (ENV === 'dev' || ENV === 'test') {
     const addressInfo = new AddressInfo()
-    addressInfo.chainId = 5001
+    addressInfo.chainId = 5003
     addressInfo.chainName = 'Mantle Testnet'
-    addressInfo.scan = 'https://explorer.testnet.mantle.xyz'
-    addressInfo.rpc = 'https://rpc.testnet.mantle.xyz'
-    addressInfo.gasMulticall = '0x3D266aD43828A3e09B8B0BFbb0048A1080B389cb'
+    addressInfo.scan = 'https://explorer.sepolia.mantle.xyz'
+    addressInfo.rpc = 'https://rpc.sepolia.mantle.xyz'
+    addressInfo.gasMulticall = '0x7Cba166389556fa21Ab9229330912184BbD8bb96'
     addressInfo.multicall = TESTNET_ADDRESSES.Multicall3
     addressInfo.initCodeHashAddress = TESTNET_ADDRESSES.InitCodeHashAddress
     addressInfo.initCodeHash = TESTNET_ADDRESSES.InitCodeHash
@@ -80,15 +70,15 @@ export function initAddress(ENV: 'dev' | 'test' | 'prod' | 'prod_node'): void {
     addressInfo.nonfungiblePositionManager = TESTNET_ADDRESSES.NonfungiblePositionManager
     addressInfo.agniPoolDeployer = TESTNET_ADDRESSES.AgniPoolDeployer
     addressInfo.WMNT = TESTNET_ADDRESSES.WMNT
-    addressInfo.USDT = '0x3e163F861826C3f7878bD8fa8117A179d80731Ab'
+    addressInfo.USDT = '0xcc4ac915857532ada58d69493554c6d869932fe6'
     addressInfo.exchangeV3GraphApi = 'https://testnet.agni.finance/graph/subgraphs/name/agni/exchange-v3'
     addressInfo.exchangeV2GraphApi = 'https://testnet.agni.finance/graph/subgraphs/name/agni/exchange-v2'
     addressInfo.blockGraphApi = 'https://testnet.agni.finance/graph/subgraphs/name/agni/blocks'
     addressInfo.launchpadGraphApi = 'https://testnet.agni.finance/graph/subgraphs/name/agni/launchpad'
     addressInfo.projectPartyRewardGraphApi = 'https://testnet.agni.finance/graph/subgraphs/name/agni/project-party-reward'
 
-    addressInfo.launchpadStakePool = TESTNET_ADDRESSES.StakingPool
-    addressInfo.launchpadInsurancePool = TESTNET_ADDRESSES.InsurancePool
+    addressInfo.launchpadStakePool = ''
+    addressInfo.launchpadInsurancePool = ''
     addressInfo.launchpadStakeToken =  TESTNET_ADDRESSES.WMNT
     addressInfo.baseApiUrl = 'https://testnet.agni.finance'
 
@@ -97,10 +87,11 @@ export function initAddress(ENV: 'dev' | 'test' | 'prod' | 'prod_node'): void {
 
 
     addressInfo.baseTradeToken = [
-      '0xEa12Be2389c2254bAaD383c6eD1fa1e15202b52A',
-      '0x3e163f861826c3f7878bd8fa8117a179d80731ab',
-      '0x82a2eb46a64e4908bbc403854bc8aa699bf058e9',
-      '0x74a0e7118480bdff5f812c7a879a41db09ac2c39',
+      '0x67A1f4A939b477A6b7c5BF94D97E45dE87E608eF',
+      '0xcc4ac915857532ada58d69493554c6d869932fe6',
+      '0xacab8129e2ce587fd203fd770ec9ecafa2c88080',
+      '0xf6762afb45ac0af7ddc5aa92b885c6ece57874dc',
+      '0x3edb12e9cf43a6f645eedee2800e01e142c5758d'
     ]
 
     if (ENV === 'dev')
@@ -171,7 +162,7 @@ export function initAddress(ENV: 'dev' | 'test' | 'prod' | 'prod_node'): void {
         symbol: 'MNT',
         decimals: 18,
       },
-      rpcUrls: ['https://rpc.testnet.mantle.xyz'],
+      rpcUrls: ['https://rpc.sepolia.mantle.xyz'],
       blockExplorerUrls: ['https://explorer.testnet.mantle.xyz/'],
     },
   ]

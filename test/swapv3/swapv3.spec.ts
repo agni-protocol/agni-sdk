@@ -1,18 +1,7 @@
 import BigNumber from 'bignumber.js'
 import {describe, it} from 'vitest'
-import {
-  ConnectInfo,
-  CurrencyAmount,
-  getCurrentAddressInfo,
-  initAddress,
-  PoolType,
-  Price,
-  SwapConfig,
-  Trace, TransactionEvent
-} from '../../src'
+import {CurrencyAmount, getCurrentAddressInfo, initAddress, PoolType, Price, SwapConfig, Trace} from '../../src'
 import {connect, handTx} from '../WalletManager'
-import {JsonRpcProvider, Network} from "ethers";
-import {ExtTransactionEvent} from "../../src/service/vo/ExtTransactionEvent";
 
 describe('swap v3 test', () => {
   initAddress('dev')
@@ -136,7 +125,7 @@ describe('swap demo', () => {
   it('Swap', async () => {
 
 
-    initAddress('prod_node')
+    initAddress('dev')
 
     const currentAddressInfo = getCurrentAddressInfo()
     const swapApi = currentAddressInfo.getApi().swapV3Api();
@@ -145,13 +134,12 @@ describe('swap demo', () => {
     // User Address
 
 
-
     const connectInfo = await connect()
     const userAddress: string = connectInfo.account
 
     // Pair
-    const token0Address: string = "0x09bc4e0d864854c6afb6eb9a9cdf58ac190d0df9" // Token0 Address
-    const token1Address: string = "MNT"
+    const token0Address: string = "MNT" // Token0 Address
+    const token1Address: string = "0xcc4ac915857532ada58d69493554c6d869932fe6"
 
     // Config
     const swapConfig = {
@@ -184,9 +172,8 @@ describe('swap demo', () => {
     )
 
 
-
     // input amount
-    const inputAmount = '65000'
+    const inputAmount = '0.1'
     // input token
     const inputToken = token0
 
@@ -215,8 +202,7 @@ describe('swap demo', () => {
         recipientAddr,
         deadline,
       )
-      Trace.log(transactionEvent.scan())
-      Trace.log(await transactionEvent.confirm())
+      await handTx(transactionEvent)
     }
 
   })
